@@ -1,11 +1,33 @@
 package ed.lab;
 
 public class Main {
-    private static final ArrayGenerator<Integer> sortedArrayGenerator = null; // Reemplácelo por una función lambda
+    private static final ArrayGenerator<Integer> sortedArrayGenerator = length -> {
+        Integer[] arr = new Integer[length];
+        for (int i = 0; i < length; i++) {
+            arr[i] = i;  // orden ascendente
+        }
+        return arr;
+    };
 
-    private static final ArrayGenerator<Integer> invertedArrayGenerator = null; // Reemplácelo por una función lambda
 
-    private static final ArrayGenerator<Integer> randomArrayGenerator = null; // Reemplácelo por una función lambda
+    private static final ArrayGenerator<Integer> invertedArrayGenerator = length -> {
+        Integer[] arr = new Integer[length];
+        for (int i = 0; i < length; i++) {
+            arr[i] = length - i;  // valores de mayor a menor
+        }
+        return arr;
+    };
+
+    private static final ArrayGenerator<Integer> randomArrayGenerator = length -> {
+        Integer[] arr = new Integer[length];
+        java.util.Random rand = new java.util.Random();
+
+        for (int i = 0; i < length; i++) {
+            arr[i] = rand.nextInt(length); // números sin orden específico
+        }
+
+        return arr;
+    };
 
     private static final QuickSort<Integer> highPivotQuickSort = null; // Reemplácelo por una referencia a un método
 

@@ -5,7 +5,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 
+
+//2. Se intenta medir el tiempo en el que se completa el metodo de ordenamiento.
 public class SortingTester<T extends Comparable<T>> {
     private static final int ARRAY_SIZE = 10000;
     private static final int TEST_SIZE = 1000;
@@ -26,14 +29,13 @@ public class SortingTester<T extends Comparable<T>> {
             durations.add(Duration.between(start, end));
         }
 
-        double average = durations.stream()
+        LongSummaryStatistics stats = durations.stream()
                 .mapToLong(Duration::toMillis)
-                .average()
-                .orElse(0);
+                .summaryStatistics();
 
-        long sum = durations.stream()
-                .mapToLong(Duration::toMillis)
-                .sum(); // hola
+        double average = stats.getAverage();
+        long sum = stats.getSum();
+
 
         System.out.printf("\t\tTiempo promedio: %s ms\n", average);
         System.out.println("\t\tSumatoria de tiempo: " + (sum));
